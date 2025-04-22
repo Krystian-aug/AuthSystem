@@ -1,3 +1,5 @@
+# Authentication and Authorization System in Spring Boot
+
 This project is a backend authentication and authorization system implemented using **Spring Boot** and **Spring Security**. It provides secure user registration, login, and role-based access control with JWT-based authentication.
 
 ## Features
@@ -31,4 +33,3 @@ This project is a backend authentication and authorization system implemented us
 - **User Roles**: Role-based access control with roles such as Admin, User, and Reception.
 - **Email Notifications**: Integration for email notifications and calendar integrations.
 - **Full Office Space Management**: Expand the application into a full-fledged office space management system.
-
