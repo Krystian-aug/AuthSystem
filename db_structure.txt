@@ -1,0 +1,41 @@
+USERS
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    imie VARCHAR(100) NOT NULL,
+    nazwisko VARCHAR(100) NOT NULL,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    haslo VARCHAR(255) NOT NULL,
+    data_zalozenia TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+
+These two tables will be used in the future as part of the further development of the application.
+
+ROOMS
+CREATE TABLE rooms (
+    id SERIAL PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    location VARCHAR(255) NOT NULL,
+    capacity INT NOT NULL CHECK (capacity > 0),
+    floor INT NOT NULL CHECK (floor >= 0),
+    whiteboard BOOLEAN DEFAULT FALSE,
+    projector BOOLEAN DEFAULT FALSE,
+    desks BOOLEAN DEFAULT FALSE
+);
+
+RESERVATIONS
+CREATE TABLE reservations (
+    id SERIAL PRIMARY KEY,
+    user_id INT NOT NULL,
+    room_id INT NOT NULL,
+    start_time TIMESTAMP NOT NULL,
+    end_time TIMESTAMP NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    title VARCHAR(255),
+
+    CONSTRAINT fk_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    CONSTRAINT fk_room FOREIGN KEY (room_id) REFERENCES rooms(id) ON DELETE CASCADE,
+    CHECK (end_time > start_time)
+);
+
+
